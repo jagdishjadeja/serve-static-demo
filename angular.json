@@ -66,6 +66,244 @@
         }
       }
     },
+    "my-application": {
+      "projectType": "application",
+      "root": "apps/my-application",
+      "sourceRoot": "apps/my-application/src",
+      "prefix": "serve-multi-spas-demo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/my-application",
+            "index": "apps/my-application/src/index.html",
+            "main": "apps/my-application/src/main.ts",
+            "polyfills": "apps/my-application/src/polyfills.ts",
+            "tsConfig": "apps/my-application/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/my-application/src/favicon.ico",
+              "apps/my-application/src/assets"
+            ],
+            "styles": ["apps/my-application/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/my-application/src/environments/environment.ts",
+                  "with": "apps/my-application/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "my-application:build:production"
+            },
+            "development": {
+              "browserTarget": "my-application:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "my-application:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/my-application/src/**/*.ts",
+              "apps/my-application/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/my-application"],
+          "options": {
+            "jestConfig": "apps/my-application/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "my-application-e2e": {
+      "root": "apps/my-application-e2e",
+      "sourceRoot": "apps/my-application-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/my-application-e2e/cypress.json",
+            "devServerTarget": "my-application:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "my-application:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/my-application-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "my-application2": {
+      "projectType": "application",
+      "root": "apps/my-application2",
+      "sourceRoot": "apps/my-application2/src",
+      "prefix": "serve-multi-spas-demo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/my-application2",
+            "index": "apps/my-application2/src/index.html",
+            "main": "apps/my-application2/src/main.ts",
+            "polyfills": "apps/my-application2/src/polyfills.ts",
+            "tsConfig": "apps/my-application2/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/my-application2/src/favicon.ico",
+              "apps/my-application2/src/assets"
+            ],
+            "styles": ["apps/my-application2/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/my-application2/src/environments/environment.ts",
+                  "with": "apps/my-application2/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "my-application2:build:production"
+            },
+            "development": {
+              "browserTarget": "my-application2:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "my-application2:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/my-application2/src/**/*.ts",
+              "apps/my-application2/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/my-application2"],
+          "options": {
+            "jestConfig": "apps/my-application2/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "my-application2-e2e": {
+      "root": "apps/my-application2-e2e",
+      "sourceRoot": "apps/my-application2-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/my-application2-e2e/cypress.json",
+            "devServerTarget": "my-application2:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "my-application2:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/my-application2-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "serve-multi-spas-demo": {
       "projectType": "application",
       "root": "apps/serve-multi-spas-demo",

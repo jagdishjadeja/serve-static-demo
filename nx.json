@@ -33,6 +33,20 @@
     "api-interfaces": {
       "tags": []
     },
+    "my-application": {
+      "tags": []
+    },
+    "my-application-e2e": {
+      "tags": [],
+      "implicitDependencies": ["my-application"]
+    },
+    "my-application2": {
+      "tags": []
+    },
+    "my-application2-e2e": {
+      "tags": [],
+      "implicitDependencies": ["my-application2"]
+    },
     "serve-multi-spas-demo": {
       "tags": []
     },
